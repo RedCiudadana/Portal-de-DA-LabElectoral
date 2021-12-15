@@ -1,0 +1,73 @@
+---
+permalink: "apis/index.html"
+---
+
+{% extends "base.njk" %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+
+<div class="single-page-header" data-background-image="../../images/single-job.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="single-page-header-inner">
+					<div class="left-side">
+						<div class="header-image"><a href="single-company-profile.html"><img src="/images/ELEMENTOS WEB/ELEMENTOS MEJORAS/ICONOS CON RECUADRO/ICONO-16.jpg" alt=""></a></div>
+						<div class="header-details">
+							<h3 style="color:#fff">APIs</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Section -->
+<div class="section gray">
+	<div class="container">
+		<div class="row">
+			
+
+				
+				
+                {% for item in collections.apis %}	
+					<div class="col-12 col-lg-6">
+                    <!-- Blog Post -->
+                    <a href="{{item.data.apis.EnlaceWeb}}" target="_blank" class="blog-post">
+                        <!-- Blog Post Thumbnail -->
+                        <div class="blog-post-thumbnail">
+                            <div class="blog-post-thumbnail-inner">
+                                <!--span class="blog-item-tag">Tips</span-->
+                                <img src="{{item.data.apis.EnlaceImagen}}" alt="">
+                            </div>
+                        </div>
+                        <!-- Blog Post Content -->
+                        <div class="blog-post-content">
+                            <span class="blog-post-date">22 July 2019</span>
+                            <h3>{{item.data.apis.Titulo}}</h3>
+                            <p>{{item.data.apis.descripcion}}</p>
+                        </div>
+                        <!-- Icon -->
+                        <div class="entry-icon"></div>
+                    </a>
+					</div>
+                {% endfor %}
+				
+				
+
+			
+
+		</div>
+	</div>
+
+	<!-- Spacer -->
+	<div class="padding-top-40"></div>
+	<!-- Spacer -->
+
+</div>
+<!-- Section / End -->
+
+{% endblock %}

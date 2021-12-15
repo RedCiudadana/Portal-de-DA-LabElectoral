@@ -1,0 +1,221 @@
+---
+permalink: "index.html"
+---
+
+{% extends "base.njk" %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+<!-- Intro Banner
+================================================== -->
+<!-- add class "disable-gradient" to enable consistent background overlay -->
+<div class="intro-banner" data-background-image="images/home-background.jpg">
+	<div class="container">
+		
+		<!-- Intro Headline -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="banner-headline">
+					<h1 class="text-white">
+						<strong class="text-white">Portal de Datos Abiertos - Lab Electoral</strong>
+						<br>
+					</h1>
+					
+						<span class="text-white">Compartimos los datos que producen las instituciones del <strong class="text-white">Sector Justicia </strong>para que puedas desarrollar aplicaciones, contar historias y poner en valor los datos de Guatemala.</span>
+					
+				</div>
+			</div>
+		</div><br>
+		
+		<!-- Search Bar -->
+		<div class="row">
+			<div class="col-md-12">
+				<!--div class="intro-banner-search-form">
+
+					<Search Field >
+					<div class="intro-search-field with-autocomplete">
+
+						<div class="input-with-icon">
+							<input id="autocomplete-input" type="text" placeholder="¿Qué datos buscás?">
+							<i class="icon-material-outline-location-on"></i>
+						</div>
+					</div>
+
+					
+
+					< Button >
+					<div class="intro-search-button">
+						<button class="button ripple-effect" onclick="window.location.href='jobs-list-layout-full-page-map.html'">Buscar</button>
+					</div>
+				</div-->
+
+				<div class="field">
+					<label for="searchField" style="display:none">Search</label>
+					<input class="form-control mx-auto" type="search" placeholder="¿Qué datos buscás?" id="searchField" style="max-width: 650px;"/>
+					
+				</div>
+				<div id="searchResultsContainer" class="w-100 rounded bg-white shadow-sm mx-auto" style="max-width:650px;">
+					<ol id="searchResults" style="z-index: 20;margin-top:-1rem">
+					</ol>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Stats -->
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="intro-stats margin-top-45 hide-under-992px">
+					<li>
+						
+						<strong class="counter text-white" id="counterData">534</strong>
+						<span class="text-white">Datasets</span>
+					</li>
+					<li>
+						<strong class="counter text-white" id="counterIns">11</strong>
+						<span class="text-white">Instituciones</span>
+					</li>
+					<li>
+						<strong class="counter text-white">9</strong>
+						<spa class="text-white"n>Historias</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<!-- Category Boxes -->
+<div class="section margin-top-65">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-12">
+
+				<div class="section-headline centered margin-bottom-15">
+					<h3>Categorias</h3>
+				</div>
+
+				<!-- Category Boxes Container -->
+				<div class="categories-container">
+
+					{% for item in collections.categoria %}
+						<!-- Category Box -->
+						<a href="{{item.url}}" class="category-box">
+							<div class="category-box-icon">
+								<img src="{{item.data.categoria.imagen}}" style="width:50%;margin-bottom:10px;">
+							</div>
+							
+							<div class="category-box-content">
+								<h3>{{item.data.categoria.nombre}}</h3>
+								<!--p>Software Engineer, Web / Mobile Developer & More</p-->
+							</div>
+
+							{% for item in collections[item.data.categoria.nombre] %}
+								{% if loop.length==loop.index %}
+									<div class="category-box-counter" id="contador">{{loop.length}}</div>
+								{% endif %}
+							{% endfor %}
+						</a>
+					{% endfor %}
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Category Boxes / End -->
+
+
+
+
+<!-- Features Cities -->
+<div class="section margin-top-65 margin-bottom-65">
+	<div class="container">
+		<div class="row">
+
+			<!-- Section Headline >
+			<div class="col-xl-12">
+				<div class="section-headline margin-top-0 margin-bottom-45">
+					<h3>Instituciones</h3>
+					<a href="/instituciones/index.html" class="headline-link">Busca más Instituciones</a>
+				</div>
+			</div-->
+			<!--
+			{% for item in collections.ins %}
+				<div class="col-xl-3 col-md-6">
+					< Photo Box >
+					<a href="{{item.url}}" class="photo-box" data-background-image="{{item.data.ins.fotoURL}}">
+						<div class="photo-box-content">
+							<h3>{{item.data.ins.nombre}}</h3>
+						</div>
+					</a>
+				</div>
+			{% endfor %}-->
+			
+			
+
+		</div>
+	</div>
+</div>
+<!-- Features Cities / End -->
+
+<style>
+	#searchResults {
+	max-height: 10rem;
+	overflow: auto;
+	background: white;
+	width: 100%;
+	position: relative;
+	}
+</style>
+
+{% endblock %}
+
+{% block body_javascripts %}
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script>
+    <script>
+      (function(window, document) {
+      "use strict";
+      const search = e => {
+        const results = window.searchIndex.search(e.target.value);
+        const ol = document.getElementById("searchResults");
+        const searchResultsContainer = document.getElementById("searchResultsContainer");
+        ol.innerHTML = "";
+        searchResultsContainer.style.position = 'none';
+        if (results && results.length > 0) {
+          searchResultsContainer.style.position = 'absolute';
+          results.map(r => {
+            const { id, Nombre, Institucion } = r.doc;
+            // this is where you'll go wild with your own HTML injection.
+            const li = document.createElement("li");
+            ol.appendChild(li);
+            const a = document.createElement("a");
+            a.setAttribute("href", id);
+            a.textContent = `${Nombre}, ${Institucion}`;
+            li.appendChild(a);
+          });
+        }
+      };
+      fetch("/search-index.json").then(response =>
+        response.json().then(rawIndex => {
+          window.searchIndex = elasticlunr.Index.load(rawIndex);
+          document.getElementById("searchField").addEventListener("input", search);
+        })
+      );
+    })(window, document);
+    </script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+   
+
+{% endblock %}

@@ -1,0 +1,287 @@
+---
+permalink: "datasets/index.html"
+---
+
+{% extends "base.njk" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<!-- Titlebar
+================================================== -->
+<div class="single-page-header" data-background-image="../../images/single-job.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="single-page-header-inner">
+					<div class="header-image"><a href="single-company-profile.html"><img src="/images/ELEMENTOS WEB/ELEMENTOS MEJORAS/ICONOS CON RECUADRO/ICONO-06.jpg" alt=""></a></div>
+					
+					<div class="left-side">
+						
+						<div class="header-details">
+							<h3 style="color:#fff">Conjuntos de Datos</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Page Content
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-xl-3 col-lg-4">
+			<div class="sidebar-container">
+				
+				<!-- Location >
+				<div class="sidebar-widget">
+					<h3>Location</h3>
+					<div class="input-with-icon">
+						<div id="autocomplete-container">
+							<input id="autocomplete-input" type="text" placeholder="Location">
+						</div>
+						<i class="icon-material-outline-location-on"></i>
+					</div>
+				</div-->
+
+				<!-- Category >
+				<div class="sidebar-widget">
+					<h3>Category</h3>
+					<select class="selectpicker default" multiple data-selected-text-format="count" data-size="7" title="All Categories" >
+						<option>Admin Support</option>
+						<option>Customer Service</option>
+						<option>Data Analytics</option>
+						<option>Design & Creative</option>
+						<option>Legal</option>
+						<option>Software Developing</option>
+						<option>IT & Networking</option>
+						<option>Writing</option>
+						<option>Translation</option>
+						<option>Sales & Marketing</option>
+					</select>
+				</div-->
+
+				<!-- Keywords -->
+				<div class="sidebar-widget">
+					<h3>Buscar</h3>
+					<div class="field">
+						<label for="searchField" style="display:none">Search</label>
+						<input class="form-control mx-auto" type="search" placeholder="¿Qué datos buscás?" id="searchField" style="max-width: 300px;"/>
+						
+					</div>
+					<div id="searchResultsContainer" class="w-100 rounded bg-white shadow-sm mx-auto" style="max-width:300px;">
+						<ol id="searchResults" style="z-index: 20;">
+						</ol>
+					</div>
+				</div>
+
+				<!-- Hourly Rate >
+				<div class="sidebar-widget">
+					<h3>Hourly Rate</h3>
+					<div class="margin-top-55"></div>
+
+					< Range Slider >
+					<input class="range-slider" type="text" value="" data-slider-currency="$" data-slider-min="10" data-slider-max="250" data-slider-step="5" data-slider-value="[10,250]"/>
+				</div-->
+
+				<!-- Tags >
+				<div class="sidebar-widget">
+					<h3>Tags</h3>
+
+					<div class="tags-container">
+						<div class="tag">
+							<input type="checkbox" id="tag1"/>
+							<label for="tag1">justicia</label>
+						</div>
+						<div class="tag">
+							<input type="checkbox" id="tag2"/>
+							<label for="tag2">datos</label>
+						</div>
+						<div class="tag">
+							<input type="checkbox" id="tag3"/>
+							<label for="tag3">guatemala</label>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+
+					< More Skills >
+					<div class="keywords-container margin-top-20">
+						<div class="keyword-input-container">
+							<input type="text" class="keyword-input" placeholder="add more skills"/>
+							<button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+						</div>
+						<div class="keywords-list">< keywords go here ></div>
+						<div class="clearfix"></div>
+					</div>
+				</div-->
+				<div class="clearfix"></div>
+
+			</div>
+		</div>
+		<div class="col-xl-9 col-lg-8 content-left-offset">
+			
+			<!--RESULTADOS POR RELEVANCIA-->
+			<!--h3 class="page-title">Search Results</h3>
+
+			<div class="notify-box margin-top-15">
+				<div class="switch-container">
+					<label class="switch"><input type="checkbox"><span class="switch-button"></span><span class="switch-text">Turn on email alerts for this search</span></label>
+				</div>
+
+				<div class="sort-by">
+					<span>Sort by:</span>
+					<select class="selectpicker hide-tick">
+						<option>Relevance</option>
+						<option>Newest</option>
+						<option>Oldest</option>
+						<option>Random</option>
+					</select>
+				</div>
+			</div-->
+			
+			<!-- Freelancers List Container -->
+		<div class="paginate">
+			<div class="freelancers-container freelancers-list-layout compact-list  margin-top-35  1"  >
+			{% for item in collections.datos %}
+				<!--Freelancer -->
+				<div class="freelancer items" id="">
+
+					<!-- Overview -->
+					<div class="freelancer-overview">
+						<div class="freelancer-overview-inner">
+							
+							<!-- Bookmark Icon -->
+							<span class="bookmark-icon"></span>
+							
+							<!-- Avatar -->
+							
+							<div class="header-image" style="min-width:100px!important;max-width:100px!important">
+								<!--div class="verified-badge"></div-->
+								<a href="{{item.url}}"><img src="{{item.data.datos.EnlaceImagen}}" alt=""></a>
+							</div>
+
+							<!-- Name -->
+							<div class="freelancer-name">
+								<h4><a href="{{item.url}}"> {{item.data.datos.Nombre}} <img class="flag" src="images/flags/gb.svg" alt="" title="United Kingdom" data-tippy-placement="top"></a></h4>
+								<span>{{item.data.datos.Institucion}}</span>
+
+								<!--{{item.data.Nombre}}-->
+								<!-- Rating -->
+								<div class="freelancer-rating">
+									<div class="star-rating" data-rating="4.9"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Details -->
+					<div class="freelancer-details" style="flex:0 0 260px!important">
+						<div class="freelancer-details-list">
+							<ul>
+								<!--li>Location <strong><i class="icon-material-outline-location-on"></i> London</strong></li>
+								<li>Rate <strong>$60 / hr</strong></li>
+								<li>Job Success <strong>95%</strong></li-->
+								<li>{{item.data.datos.Categoria}}</li>
+							</ul>
+						</div>
+						<div>
+							<a href="{{item.url}}" class="button button-sliding-icon ripple-effect">Explorar<i class="icon-material-outline-arrow-right-alt"></i></a>
+						</div>
+					</div>
+				</div>
+				<!-- Freelancer / End -->
+			{% endfor %}
+
+				
+				
+
+	
+			</div>
+			<!-- Freelancers Container / End -->
+
+			<!-- Pagination -->
+			<div class="pager pag" >
+				<div class="firstPage">&laquo;</div>
+				<div class="previousPage">&lsaquo;</div>
+				<div class="pageNumbers"></div>
+				<div class="nextPage">&rsaquo;</div>
+				<div class="lastPage">&raquo;</div>
+			</div>
+			<!-- Pagination / End -->
+		</div>	
+
+		</div>
+	</div>
+</div>
+
+<style>
+	#searchResults {
+	max-height: 10rem;
+	overflow: auto;
+	background: white;
+	width: 100%;
+	position: relative;
+	}
+</style>
+
+{% endblock %}
+
+{% block body_javascripts %}
+
+
+<script src="https://cdn.rawgit.com/mrk-j/paginga/v0.8.1/paginga.jquery.min.js"></script>
+<script>
+$(".paginate").paginga({
+	item:"> div",
+	itemsPerPage: 50,
+
+});
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script>
+<script>
+	(function(window, document) {
+	"use strict";
+	const search = e => {
+	const results = window.searchIndex.search(e.target.value);
+	const ol = document.getElementById("searchResults");
+	const searchResultsContainer = document.getElementById("searchResultsContainer");
+	ol.innerHTML = "";
+	searchResultsContainer.style.position = 'none';
+	if (results && results.length > 0) {
+		searchResultsContainer.style.position = 'absolute';
+		results.map(r => {
+		const { id, Nombre, Institucion } = r.doc;
+		// this is where you'll go wild with your own HTML injection.
+		const li = document.createElement("li");
+		ol.appendChild(li);
+		const a = document.createElement("a");
+		a.setAttribute("href", id);
+		a.textContent = `${Nombre}, ${Institucion}`;
+		li.appendChild(a);
+		});
+	}
+	};
+	fetch("/search-index.json").then(response =>
+	response.json().then(rawIndex => {
+		window.searchIndex = elasticlunr.Index.load(rawIndex);
+		document.getElementById("searchField").addEventListener("input", search);
+	})
+	);
+})(window, document);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+
+{% endblock %}
